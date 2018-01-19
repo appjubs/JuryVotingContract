@@ -36,7 +36,7 @@ contract JuryVotes {
     }
 
     
-    function InserirJudgment (
+    function InsertJudgment (
         address _judged,
         address _juryOne, 
         address _juryTwo, 
@@ -116,9 +116,9 @@ contract JuryVotes {
         GetJudgmentUsuario(_juryOne, _juryTwo, _juryThree, _juryFour, _juryFive, _occurrence, _completed, _defendant);
     }
 
-    function Votar(address _judged, uint _codJudgment, bool _vote) public returns (bool completed) {
+    function Vote(address _judged, uint _codJudgment, bool _vote) public returns (bool completed) {
         bool juryTrue = false;
-        uint juryNOneero = 0;
+        uint juryNumber = 0;
 
         //test variables
         require(_judged != 0x0);
@@ -130,17 +130,17 @@ contract JuryVotes {
         for (uint index = 0; index <= 6; index++) {
             if(p.Judgments[_codJudgment].judges[index].jury == msg.sender) {
                 juryTrue = true;
-                juryNOneero = --index;
+                juryNumber = --index;
             }           
             
         }
 
         require(juryTrue == true);
-        require(p.Judgments[_codJudgment].judges[juryNOneero].voted == false);
+        require(p.Judgments[_codJudgment].judges[juryNumber].voted == false);
 
         //update Vote
         p.Judgments[_codJudgment].judges[index].vote = _vote;
-        p.Judgments[_codJudgment].judges[juryNOneero].voted = true;        
+        p.Judgments[_codJudgment].judges[juryNumber].voted = true;        
 
         return true;
     }
