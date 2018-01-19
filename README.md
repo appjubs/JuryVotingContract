@@ -1,2 +1,4 @@
 # VoteWithJury
-testing Smart Contract with system in five jury,
+Smart Contract with system in five jury,
+
+#System in Development 
